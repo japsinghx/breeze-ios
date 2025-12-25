@@ -3,6 +3,7 @@ import SwiftUI
 struct PollutantsGrid: View {
     let pollutants: [PollutantReading]
     @State private var selectedPollutant: PollutantReading?
+    @State private var detentSelection: PresentationDetent = .large
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -22,8 +23,9 @@ struct PollutantsGrid: View {
                     PollutantRow(pollutant: pollutant)
                         .onTapGesture {
                             selectedPollutant = pollutant
+                            detentSelection = .large
                         }
-                        .background(Color(.secondarySystemGroupedBackground))
+                        .background(Color.cardBackground)
                         // Round top corners for first item
                         .clipShape(
                             RoundedCorner(
@@ -44,7 +46,7 @@ struct PollutantsGrid: View {
         }
         .sheet(item: $selectedPollutant) { pollutant in
             PollutantDetailSheet(pollutant: pollutant)
-                .presentationDetents([.medium, .large])
+                .presentationDetents([.large, .medium], selection: $detentSelection)
                 .presentationDragIndicator(.visible)
         }
     }
@@ -188,7 +190,7 @@ struct PollutantDetailSheet: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 24)
-                    .background(Color(.secondarySystemGroupedBackground))
+                    .background(Color.cardBackground)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     
                     // About section
@@ -203,7 +205,7 @@ struct PollutantDetailSheet: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
-                    .background(Color(.secondarySystemGroupedBackground))
+                    .background(Color.cardBackground)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     
                     // Health ranges
@@ -236,7 +238,7 @@ struct PollutantDetailSheet: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
-                    .background(Color(.secondarySystemGroupedBackground))
+                    .background(Color.cardBackground)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
                 .padding()

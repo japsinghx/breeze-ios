@@ -31,6 +31,7 @@
 		022 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122; };
 		023 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123; };
 		024 /* AnimatedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124; };
+		025 /* AppearanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		122 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		123 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		124 /* AnimatedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedText.swift; sourceTree = "<group>"; };
+		125 /* AppearanceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceMode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				106 /* PollenData.swift */,
 				107 /* ClimateData.swift */,
 				108 /* City.swift */,
+				125 /* AppearanceMode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				022 /* Color+Theme.swift in Sources */,
 				023 /* SettingsView.swift in Sources */,
 				024 /* AnimatedText.swift in Sources */,
+				025 /* AppearanceMode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,6 +4,19 @@ extension Color {
     // MARK: - Background Colors
     static let appBackground = Color("Background")
     
+    // Card backgrounds with better contrast in light mode
+    static let cardBackground = Color(UIColor { traitCollection in
+        traitCollection.userInterfaceStyle == .dark
+            ? UIColor(white: 0.15, alpha: 1.0)  // Dark mode: slightly lighter than black
+            : UIColor(white: 0.91, alpha: 1.0)  // Light mode: darker gray for better visibility
+    })
+    
+    static let searchBarBackground = Color(UIColor { traitCollection in
+        traitCollection.userInterfaceStyle == .dark
+            ? UIColor(white: 0.2, alpha: 1.0)   // Dark mode: medium gray
+            : UIColor(white: 0.92, alpha: 1.0)  // Light mode: visible gray
+    })
+    
     // MARK: - AQI Colors
     static let aqiGood = Color(hex: "34c759")
     static let aqiModerate = Color(hex: "ff9500")
@@ -13,7 +26,7 @@ extension Color {
     static let aqiHazardous = Color(hex: "8e0000")
     
     // MARK: - Pollen Level Colors
-    static let levelNone = Color.gray
+    static let levelNone = Color(hex: "34c759") // Green for 0/none
     static let levelLow = Color(hex: "34c759")
     static let levelModerate = Color(hex: "ff9500")
     static let levelHigh = Color(hex: "ff3b30")

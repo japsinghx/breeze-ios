@@ -12,7 +12,7 @@ struct DashboardView: View {
                         .font(.title)
                         .fontWeight(.semibold)
                     
-                    Text(Date(), style: .date)
+                    Text(Date().formatted(date: .complete, time: .omitted))
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -21,18 +21,13 @@ struct DashboardView: View {
                 // AQI Card
                 AQICard(viewModel: viewModel)
                 
-                // Pollutants Grid
-                PollutantsGrid(pollutants: viewModel.pollutants)
-                
-                // Health Tips
-                if let status = viewModel.aqiStatus {
-                    HealthTipsView(tips: status.tips)
-                }
-                
                 // Pollen Section
                 if !viewModel.pollenItems.isEmpty {
                     PollenView(items: viewModel.pollenItems)
                 }
+                
+                // Pollutants Grid
+                PollutantsGrid(pollutants: viewModel.pollutants)
                 
                 // Climate Chart
                 if !viewModel.climateData.isEmpty {

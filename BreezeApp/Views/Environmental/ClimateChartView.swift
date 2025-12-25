@@ -35,15 +35,19 @@ struct ClimateChartView: View {
                 
                 Spacer()
                 
-                // Unit toggle
-                Toggle(isOn: $useFahrenheit) {
-                    Text(useFahrenheit ? "°F" : "°C")
+                // Unit toggle - iOS style switch
+                HStack(spacing: 8) {
+                    Text("°C")
                         .font(.caption)
-                        .fontWeight(.bold)
+                        .foregroundColor(!useFahrenheit ? .primary : .secondary)
+                    
+                    Toggle("", isOn: $useFahrenheit)
+                        .labelsHidden()
+                    
+                    Text("°F")
+                        .font(.caption)
+                        .foregroundColor(useFahrenheit ? .primary : .secondary)
                 }
-                .toggleStyle(.button)
-                .buttonStyle(.bordered)
-                .tint(useFahrenheit ? .orange : .blue)
             }
             
             // Change summary
@@ -101,7 +105,7 @@ struct ClimateChartView: View {
             }
         }
         .padding()
-        .background(.ultraThinMaterial)
+        .background(Color.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 16))
     }
     

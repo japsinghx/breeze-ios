@@ -44,7 +44,7 @@ struct AQICard: View {
                             .fill(viewModel.aqiColor)
                             .frame(width: 12, height: 12)
                         
-                        Text("\(status.text) \(status.emoji)")
+                        Text(status.text)
                             .font(.title2)
                             .fontWeight(.semibold)
                             .foregroundColor(viewModel.aqiColor)
@@ -55,6 +55,41 @@ struct AQICard: View {
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                 }
+                
+                // Health Tips Section - Merged seamlessly
+                Divider()
+                    .padding(.vertical, 8)
+                
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "heart.fill")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundColor(.pink)
+                        
+                        Text("What You Can Do")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                    }
+                    
+                    VStack(spacing: 10) {
+                        ForEach(Array(status.tips.enumerated()), id: \.offset) { index, tip in
+                            HStack(alignment: .top, spacing: 10) {
+                                Circle()
+                                    .fill(viewModel.aqiColor.opacity(0.8))
+                                    .frame(width: 6, height: 6)
+                                    .padding(.top, 6)
+                                
+                                Text(tip)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                
+                                Spacer()
+                            }
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
             
             // Share button
@@ -71,7 +106,7 @@ struct AQICard: View {
             .tint(viewModel.aqiColor)
         }
         .padding(24)
-        .background(.ultraThinMaterial)
+        .background(Color.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 24))
     }
     

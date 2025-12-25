@@ -36,7 +36,7 @@ struct SearchView: View {
                     }
                 }
                 .padding(12)
-                .background(.ultraThinMaterial)
+                .background(Color.searchBarBackground)
                 .clipShape(Capsule())
                 .padding()
                 
@@ -59,7 +59,7 @@ struct SearchView: View {
                             .foregroundColor(.secondary)
                     }
                     .padding()
-                    .background(.ultraThinMaterial)
+                    .background(Color.cardBackground)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
                 .buttonStyle(.plain)

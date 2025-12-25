@@ -43,8 +43,8 @@ struct AQIStatus {
                 description: "Air quality is pristine! Perfect day for adventures.",
                 color: "aqiGood",
                 tips: [
-                    "Air is exceptionally clean right now 🌟",
-                    "No air quality concerns at this level 🌬️"
+                    "Air is exceptionally clean right now",
+                    "No air quality concerns at this level"
                 ]
             )
         case 26...50:
@@ -54,9 +54,9 @@ struct AQIStatus {
                 description: "Air quality is great. Breathe easy!",
                 color: "aqiGood",
                 tips: [
-                    "Air quality meets health standards 👍",
-                    "Pollutant levels are low ✨",
-                    "No health risks from air quality 🌬️"
+                    "Air quality meets health standards",
+                    "Pollutant levels are low",
+                    "No health risks from air quality"
                 ]
             )
         case 51...75:
@@ -66,9 +66,9 @@ struct AQIStatus {
                 description: "Air quality is acceptable for most people.",
                 color: "aqiModerate",
                 tips: [
-                    "Air quality is acceptable for most 👍",
-                    "Unusually sensitive people may experience minor effects 🤔",
-                    "Pollutant levels are within moderate range ✓"
+                    "Air quality is acceptable for most",
+                    "Unusually sensitive people may experience minor effects",
+                    "Pollutant levels are within moderate range"
                 ]
             )
         case 76...100:
@@ -78,9 +78,9 @@ struct AQIStatus {
                 description: "Getting a bit iffy for sensitive groups.",
                 color: "aqiModerate",
                 tips: [
-                    "Sensitive groups may experience respiratory symptoms 💨",
-                    "Air pollutants are at elevated levels 📊",
-                    "Those with asthma should have medication available 💊"
+                    "Sensitive groups may experience respiratory symptoms",
+                    "Air pollutants are at elevated levels",
+                    "Those with asthma should have medication available"
                 ]
             )
         case 101...150:
@@ -90,9 +90,9 @@ struct AQIStatus {
                 description: "Sensitive groups should be cautious.",
                 color: "aqiUnhealthySensitive",
                 tips: [
-                    "Air quality may affect children, elderly, and those with respiratory conditions 🏠",
-                    "Pollutant concentrations are unhealthy for sensitive groups ⚠️",
-                    "Consider using air purifiers indoors 💨"
+                    "Air quality may affect children, elderly, and those with respiratory conditions",
+                    "Pollutant concentrations are unhealthy for sensitive groups",
+                    "Consider using air purifiers indoors"
                 ]
             )
         case 151...200:
@@ -102,9 +102,9 @@ struct AQIStatus {
                 description: "Everyone may feel the effects now.",
                 color: "aqiUnhealthy",
                 tips: [
-                    "Air quality is unhealthy for everyone 🚨",
-                    "Keeping windows closed will help maintain indoor air quality 🚪",
-                    "Wearing masks can reduce exposure to pollutants 😷"
+                    "Air quality is unhealthy for everyone",
+                    "Keeping windows closed will help maintain indoor air quality",
+                    "Wearing masks can reduce exposure to pollutants"
                 ]
             )
         case 201...300:
@@ -114,9 +114,9 @@ struct AQIStatus {
                 description: "Serious health concerns for everyone.",
                 color: "aqiVeryUnhealthy",
                 tips: [
-                    "Air pollutants are at dangerous levels 🛑",
-                    "Indoor air quality is significantly better than outdoor 🏠",
-                    "Air purifiers can help reduce indoor pollutant levels 💨"
+                    "Air pollutants are at dangerous levels",
+                    "Indoor air quality is significantly better than outdoor",
+                    "Air purifiers can help reduce indoor pollutant levels"
                 ]
             )
         default:
@@ -126,10 +126,10 @@ struct AQIStatus {
                 description: "Emergency conditions. Seriously bad air.",
                 color: "aqiHazardous",
                 tips: [
-                    "Air quality has reached hazardous levels ⚠️",
-                    "Outdoor air contains dangerous pollutant concentrations 🏠",
-                    "N95 masks filter harmful particles from the air 😷",
-                    "Air purifiers on high settings can improve indoor air 💨"
+                    "Air quality has reached hazardous levels",
+                    "Outdoor air contains dangerous pollutant concentrations",
+                    "N95 masks filter harmful particles from the air",
+                    "Air purifiers on high settings can improve indoor air"
                 ]
             )
         }

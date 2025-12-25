@@ -3,6 +3,7 @@ import SwiftUI
 struct PollenView: View {
     let items: [PollenItem]
     @State private var selectedPollen: PollenItem?
+    @State private var detentSelection: PresentationDetent = .large
     
     private let columns = [
         GridItem(.flexible()),
@@ -39,7 +40,7 @@ struct PollenView: View {
                     .padding(.vertical, 24)
                     Spacer()
                 }
-                .background(.ultraThinMaterial)
+                .background(Color.cardBackground)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
             } else {
                 LazyVGrid(columns: columns, spacing: 8) {
@@ -47,6 +48,7 @@ struct PollenView: View {
                         PollenItemCard(item: item)
                             .onTapGesture {
                                 selectedPollen = item
+                                detentSelection = .large
                             }
                     }
                 }
@@ -54,7 +56,8 @@ struct PollenView: View {
         }
         .sheet(item: $selectedPollen) { pollen in
             PollenDetailSheet(pollen: pollen)
-                .presentationDetents([.medium])
+                .presentationDetents([.large, .medium], selection: $detentSelection)
+                .presentationDragIndicator(.visible)
         }
     }
 }
@@ -103,7 +106,7 @@ struct PollenItemCard: View {
                 .foregroundColor(.secondary)
         }
         .padding(10)
-        .background(.ultraThinMaterial)
+        .background(Color.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
@@ -115,41 +118,76 @@ struct PollenDetailSheet: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    // Header
-                    VStack(alignment: .leading, spacing: 8) {
-                        HStack {
-                            Image(systemName: "leaf.fill")
-                                .font(.title)
-                                .foregroundColor(.green)
+                VStack(spacing: 20) {
+                    // Hero section - moved higher with less padding
+                    VStack(spacing: 12) {
+                        // Icon
+                        ZStack {
+                            Circle()
+                                .fill(pollen.level.color.opacity(0.15))
+                                .frame(width: 70, height: 70)
                             
-                            Spacer()
+                            Image(systemName: "leaf.fill")
+                                .font(.system(size: 28, weight: .medium))
+                                .foregroundColor(pollen.level.color)
                         }
                         
-                        Text(pollen.name)
-                            .font(.title2)
-                            .fontWeight(.bold)
-                        
-                        Text(pollen.isPlant ? "Plant Pollen" : "Pollen Type")
-                            .font(.body)
-                            .foregroundColor(.secondary)
+                        // Name
+                        VStack(spacing: 4) {
+                            Text(pollen.name)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                            
+                            Text(pollen.isPlant ? "Plant Pollen" : "Pollen Type")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
                     }
                     
-                    // Plant Image
+                    // Current level card - shrunk
+                    VStack(spacing: 8) {
+                        HStack(alignment: .firstTextBaseline, spacing: 4) {
+                            Text("\(pollen.value)")
+                                .font(.system(size: 44, weight: .bold, design: .rounded))
+                                .foregroundColor(pollen.level.color)
+                            
+                            Text("/ 5")
+                                .font(.title3)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        // Status badge
+                        Text(pollen.level.rawValue)
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 6)
+                            .background(pollen.level.color)
+                            .clipShape(Capsule())
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
+                    .background(Color.cardBackground)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    
+                    // Plant Image (if available) - made bigger
                     if let imageUrl = pollen.imageUrl, let url = URL(string: imageUrl) {
                         AsyncImage(url: url) { phase in
                             switch phase {
                             case .empty:
                                 ProgressView()
                                     .frame(maxWidth: .infinity)
-                                    .frame(height: 200)
+                                    .frame(height: 260)
+                                    .background(Color.cardBackground)
+                                    .clipShape(RoundedRectangle(cornerRadius: 16))
                             case .success(let image):
                                 image
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(maxWidth: .infinity)
-                                    .frame(height: 200)
-                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                                    .frame(height: 260)
+                                    .clipShape(RoundedRectangle(cornerRadius: 16))
                             case .failure:
                                 EmptyView()
                             @unknown default:
@@ -158,105 +196,133 @@ struct PollenDetailSheet: View {
                         }
                     }
                     
-                    Divider()
-                    
-                    // Current Level
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Current Level")
-                            .font(.headline)
-                        
-                        HStack(alignment: .firstTextBaseline, spacing: 8) {
-                            Text("\(pollen.value)")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                                .foregroundColor(pollen.level.color)
-                            
-                            Text("(\(pollen.level.rawValue))")
-                                .font(.body)
-                                .foregroundColor(pollen.level.color)
-                        }
-                    }
-                    
-                    // Level Scale
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Pollen Index Scale")
-                            .font(.headline)
-                        
-                        VStack(spacing: 4) {
-                            PollenScaleRow(level: "None", range: "0", color: .levelNone, isActive: pollen.value == 0)
-                            PollenScaleRow(level: "Low", range: "1", color: .levelLow, isActive: pollen.value == 1)
-                            PollenScaleRow(level: "Moderate", range: "2-3", color: .levelModerate, isActive: pollen.value >= 2 && pollen.value <= 3)
-                            PollenScaleRow(level: "High", range: "4", color: .levelHigh, isActive: pollen.value == 4)
-                            PollenScaleRow(level: "Very High", range: "5", color: .levelExtreme, isActive: pollen.value >= 5)
-                        }
-                    }
-                    
-                    // About this Plant
+                    // About this Plant - moved below image
                     if pollen.family != nil || pollen.season != nil || pollen.appearance != nil {
-                        Divider()
-                        
                         VStack(alignment: .leading, spacing: 12) {
                             Text("About this Plant")
                                 .font(.headline)
                             
-                            VStack(alignment: .leading, spacing: 8) {
+                            VStack(alignment: .leading, spacing: 12) {
                                 if let family = pollen.family {
-                                    HStack(alignment: .top) {
-                                        Text("Family:")
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text("Family")
+                                            .font(.caption)
                                             .fontWeight(.semibold)
-                                        Text(family)
                                             .foregroundColor(.secondary)
+                                        Text(family)
+                                            .font(.subheadline)
                                     }
-                                    .font(.subheadline)
                                 }
                                 
                                 if let season = pollen.season {
-                                    HStack(alignment: .top) {
-                                        Text("Season:")
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text("Season")
+                                            .font(.caption)
                                             .fontWeight(.semibold)
-                                        Text(season)
                                             .foregroundColor(.secondary)
+                                        Text(season)
+                                            .font(.subheadline)
                                     }
-                                    .font(.subheadline)
                                 }
                                 
                                 if let appearance = pollen.appearance {
-                                    HStack(alignment: .top) {
-                                        Text("Appearance:")
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text("Appearance")
+                                            .font(.caption)
                                             .fontWeight(.semibold)
-                                        Text(appearance)
                                             .foregroundColor(.secondary)
+                                        Text(appearance)
+                                            .font(.subheadline)
                                     }
-                                    .font(.subheadline)
                                 }
                             }
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                        .background(Color.cardBackground)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
                     
                     // Health Recommendations
                     if let recommendations = pollen.healthRecommendations, !recommendations.isEmpty {
-                        Divider()
-                        
                         VStack(alignment: .leading, spacing: 12) {
                             Text("Health Recommendations")
                                 .font(.headline)
                             
-                            VStack(alignment: .leading, spacing: 8) {
+                            VStack(alignment: .leading, spacing: 10) {
                                 ForEach(recommendations, id: \.self) { recommendation in
-                                    HStack(alignment: .top, spacing: 8) {
-                                        Text("•")
-                                            .foregroundColor(.secondary)
+                                    HStack(alignment: .top, spacing: 10) {
+                                        Circle()
+                                            .fill(pollen.level.color.opacity(0.8))
+                                            .frame(width: 6, height: 6)
+                                            .padding(.top, 6)
+                                        
                                         Text(recommendation)
                                             .font(.subheadline)
                                             .foregroundColor(.secondary)
+                                            .fixedSize(horizontal: false, vertical: true)
+                                        
+                                        Spacer()
                                     }
                                 }
                             }
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                        .background(Color.cardBackground)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
+                    
+                    // Pollen Index Scale - moved to bottom
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Pollen Index Scale")
+                            .font(.headline)
+                        
+                        VStack(spacing: 8) {
+                            PollenScaleRow(
+                                level: "None",
+                                range: "0",
+                                color: .levelNone,
+                                isActive: pollen.value == 0
+                            )
+                            
+                            PollenScaleRow(
+                                level: "Low",
+                                range: "1",
+                                color: .levelLow,
+                                isActive: pollen.value == 1
+                            )
+                            
+                            PollenScaleRow(
+                                level: "Moderate",
+                                range: "2-3",
+                                color: .levelModerate,
+                                isActive: pollen.value >= 2 && pollen.value <= 3
+                            )
+                            
+                            PollenScaleRow(
+                                level: "High",
+                                range: "4",
+                                color: .levelHigh,
+                                isActive: pollen.value == 4
+                            )
+                            
+                            PollenScaleRow(
+                                level: "Very High",
+                                range: "5",
+                                color: .levelExtreme,
+                                isActive: pollen.value >= 5
+                            )
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                    .background(Color.cardBackground)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
                 .padding()
             }
+            .background(Color(.systemGroupedBackground))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -264,7 +330,8 @@ struct PollenDetailSheet: View {
                         dismiss()
                     } label: {
                         Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.secondary)
+                            .font(.title3)
+                            .foregroundStyle(.tertiary)
                     }
                 }
             }
