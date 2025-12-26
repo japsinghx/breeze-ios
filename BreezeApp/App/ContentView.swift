@@ -4,6 +4,7 @@ struct ContentView: View {
     @StateObject private var viewModel = DashboardViewModel()
     @State private var showSearch = false
     @State private var showSettings = false
+    @AppStorage("appearanceMode") private var appearanceMode: AppearanceMode = .system
     
     var body: some View {
         NavigationStack {
@@ -51,7 +52,7 @@ struct ContentView: View {
                                 Spacer()
                             }
                             .padding()
-                            .background(.ultraThinMaterial)
+                            .background(Color.searchBarBackground)
                             .clipShape(Capsule())
                         }
                         .padding(.horizontal, 24)
@@ -105,11 +106,14 @@ struct ContentView: View {
             }
             .sheet(isPresented: $showSearch) {
                 SearchView(viewModel: viewModel)
+                    .preferredColorScheme(appearanceMode.colorScheme)
             }
             .sheet(isPresented: $showSettings) {
                 SettingsView()
+                    .preferredColorScheme(appearanceMode.colorScheme)
             }
         }
+        .preferredColorScheme(appearanceMode.colorScheme)
         .tint(.accentColor)
     }
 }

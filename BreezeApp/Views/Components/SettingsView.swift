@@ -3,10 +3,24 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @AppStorage("useFahrenheit") private var useFahrenheit = true
+    @AppStorage("appearanceMode") private var appearanceMode: AppearanceMode = .system
     
     var body: some View {
         NavigationStack {
             List {
+                // Appearance
+                Section("Appearance") {
+                    Picker("Theme", selection: $appearanceMode) {
+                        Label("System", systemImage: "circle.lefthalf.filled")
+                            .tag(AppearanceMode.system)
+                        Label("Light", systemImage: "sun.max")
+                            .tag(AppearanceMode.light)
+                        Label("Dark", systemImage: "moon")
+                            .tag(AppearanceMode.dark)
+                    }
+                    .pickerStyle(.inline)
+                }
+                
                 // Temperature Unit
                 Section("Preferences") {
                     Toggle(isOn: $useFahrenheit) {
