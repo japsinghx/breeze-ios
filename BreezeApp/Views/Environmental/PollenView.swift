@@ -66,25 +66,25 @@ struct PollenItemCard: View {
     let item: PollenItem
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            HStack {
+        VStack(alignment: .leading, spacing: 8) {
+            // Header with name, value, and chevron
+            HStack(alignment: .center, spacing: 6) {
                 Text(item.name)
                     .font(.subheadline)
                     .fontWeight(.medium)
                     .lineLimit(1)
                 
+                Text("\(item.value)")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .foregroundColor(item.level.color)
+                
                 Spacer()
                 
-                HStack(spacing: 4) {
-                    Text("\(item.value)")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(item.level.color)
-                    
-                    Image(systemName: "info.circle")
-                        .font(.caption)
-                        .foregroundColor(.accentColor)
-                }
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
             }
             
             // Progress bar
@@ -101,11 +101,12 @@ struct PollenItemCard: View {
             }
             .frame(height: 6)
             
+            // Level label
             Text(item.level.rawValue)
                 .font(.caption)
                 .foregroundColor(.secondary)
         }
-        .padding(10)
+        .padding(12)
         .background(Color.cardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
@@ -246,8 +247,15 @@ struct PollenDetailSheet: View {
                     // Health Recommendations
                     if let recommendations = pollen.healthRecommendations, !recommendations.isEmpty {
                         VStack(alignment: .leading, spacing: 12) {
-                            Text("Health Recommendations")
-                                .font(.headline)
+                            HStack(spacing: 8) {
+                                Image(systemName: "heart.fill")
+                                    .font(.system(size: 12, weight: .semibold))
+                                    .foregroundColor(.pink)
+                                
+                                Text("What You Can Do")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                            }
                             
                             VStack(alignment: .leading, spacing: 10) {
                                 ForEach(recommendations, id: \.self) { recommendation in
@@ -258,7 +266,7 @@ struct PollenDetailSheet: View {
                                             .padding(.top, 6)
                                         
                                         Text(recommendation)
-                                            .font(.subheadline)
+                                            .font(.caption)
                                             .foregroundColor(.secondary)
                                             .fixedSize(horizontal: false, vertical: true)
                                         

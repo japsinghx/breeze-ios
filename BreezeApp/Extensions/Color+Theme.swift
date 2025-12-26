@@ -29,8 +29,8 @@ extension Color {
     static let levelNone = Color(hex: "34c759") // Green for 0/none
     static let levelLow = Color(hex: "34c759")
     static let levelModerate = Color(hex: "ff9500")
-    static let levelHigh = Color(hex: "ff3b30")
-    static let levelExtreme = Color(hex: "8e0000")
+    static let levelHigh = Color.red  // Use system red to match climate chart
+    static let levelExtreme = Color.red  // Use system red to match climate chart
     
     // MARK: - Climate Colors
     static let climateNeutral = Color.gray

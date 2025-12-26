@@ -22,7 +22,14 @@ struct SearchView: View {
                                 viewModel.searchCities(newValue)
                             }
                     } else {
-                        // Fallback on earlier versions
+                        // Fallback for iOS 16 and earlier
+                        TextField("Search for a city", text: $viewModel.searchQuery)
+                            .focused($isSearchFocused)
+                            .textFieldStyle(.plain)
+                            .autocorrectionDisabled(true)
+                            .onChange(of: viewModel.searchQuery) { newValue in
+                                viewModel.searchCities(newValue)
+                            }
                     }
                     
                     if !viewModel.searchQuery.isEmpty {
