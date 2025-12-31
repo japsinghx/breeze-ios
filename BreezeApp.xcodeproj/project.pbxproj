@@ -3,36 +3,65 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		001 /* BreezeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101; };
-		002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102; };
-		003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 103; };
-		004 /* AirQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104; };
-		005 /* Pollutant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105; };
-		006 /* PollenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106; };
-		007 /* ClimateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107; };
-		008 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108; };
-		009 /* AirQualityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109; };
-		010 /* GeocodingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110; };
-		011 /* PollenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111; };
-		012 /* ClimateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112; };
-		013 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113; };
-		014 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114; };
-		015 /* AQICard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115; };
-		016 /* PollutantsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116; };
-		017 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117; };
-		018 /* PollenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118; };
-		019 /* ClimateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119; };
-		020 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120; };
-		021 /* HealthTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121; };
-		022 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122; };
-		023 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123; };
-		024 /* AnimatedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124; };
-		025 /* AppearanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125; };
+		001 /* BreezeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101 /* BreezeApp.swift */; };
+		002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102 /* ContentView.swift */; };
+		003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 103 /* Assets.xcassets */; };
+		004 /* AirQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104 /* AirQuality.swift */; };
+		005 /* Pollutant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105 /* Pollutant.swift */; };
+		006 /* PollenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106 /* PollenData.swift */; };
+		007 /* ClimateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107 /* ClimateData.swift */; };
+		008 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108 /* City.swift */; };
+		009 /* AirQualityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109 /* AirQualityService.swift */; };
+		010 /* GeocodingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110 /* GeocodingService.swift */; };
+		011 /* PollenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111 /* PollenService.swift */; };
+		012 /* ClimateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112 /* ClimateService.swift */; };
+		013 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113 /* DashboardViewModel.swift */; };
+		014 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114 /* DashboardView.swift */; };
+		015 /* AQICard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115 /* AQICard.swift */; };
+		016 /* PollutantsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116 /* PollutantsGrid.swift */; };
+		017 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117 /* SearchView.swift */; };
+		018 /* PollenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118 /* PollenView.swift */; };
+		019 /* ClimateChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119 /* ClimateChartView.swift */; };
+		020 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120 /* LoadingView.swift */; };
+		021 /* HealthTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121 /* HealthTipsView.swift */; };
+		022 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122 /* Color+Theme.swift */; };
+		023 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123 /* SettingsView.swift */; };
+		024 /* AnimatedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124 /* AnimatedText.swift */; };
+		025 /* AppearanceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125 /* AppearanceMode.swift */; };
+		026 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126 /* NetworkMonitor.swift */; };
+		027 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127 /* NoInternetView.swift */; };
+		357896532EFFA50B00635FD5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 357896522EFFA50B00635FD5 /* WidgetKit.framework */; };
+		357896552EFFA50B00635FD5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 357896542EFFA50B00635FD5 /* SwiftUI.framework */; };
+		357896662EFFA50D00635FD5 /* BreezeWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 357896502EFFA50B00635FD5 /* BreezeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		357896642EFFA50D00635FD5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 600 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3578964F2EFFA50B00635FD5;
+			remoteInfo = BreezeWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3578966B2EFFA50D00635FD5 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				357896662EFFA50D00635FD5 /* BreezeWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		100 /* BreezeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreezeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,7 +90,28 @@
 		123 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		124 /* AnimatedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedText.swift; sourceTree = "<group>"; };
 		125 /* AppearanceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceMode.swift; sourceTree = "<group>"; };
+		126 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		127 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
+		357896502EFFA50B00635FD5 /* BreezeWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BreezeWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		357896522EFFA50B00635FD5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		357896542EFFA50B00635FD5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		3578966C2EFFA57A00635FD5 /* BreezeAppRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BreezeAppRelease.entitlements; sourceTree = "<group>"; };
+		3578966D2EFFA5B800635FD5 /* BreezeWidgetExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BreezeWidgetExtensionRelease.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		357896672EFFA50D00635FD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 3578964F2EFFA50B00635FD5 /* BreezeWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		357896562EFFA50B00635FD5 /* BreezeWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (357896672EFFA50D00635FD5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = BreezeWidget; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		200 /* Frameworks */ = {
@@ -71,13 +121,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3578964D2EFFA50B00635FD5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				357896552EFFA50B00635FD5 /* SwiftUI.framework in Frameworks */,
+				357896532EFFA50B00635FD5 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		300 = {
 			isa = PBXGroup;
 			children = (
+				3578966D2EFFA5B800635FD5 /* BreezeWidgetExtensionRelease.entitlements */,
 				301 /* BreezeApp */,
+				357896562EFFA50B00635FD5 /* BreezeWidget */,
+				357896512EFFA50B00635FD5 /* Frameworks */,
 				302 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,6 +147,7 @@
 		301 /* BreezeApp */ = {
 			isa = PBXGroup;
 			children = (
+				3578966C2EFFA57A00635FD5 /* BreezeAppRelease.entitlements */,
 				303 /* App */,
 				304 /* Models */,
 				305 /* Services */,
@@ -100,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				100 /* BreezeApp.app */,
+				357896502EFFA50B00635FD5 /* BreezeWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,6 +197,7 @@
 				110 /* GeocodingService.swift */,
 				111 /* PollenService.swift */,
 				112 /* ClimateService.swift */,
+				126 /* NetworkMonitor.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -152,6 +217,7 @@
 				311 /* Search */,
 				312 /* Environmental */,
 				313 /* Components */,
+				127 /* NoInternetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -210,20 +276,53 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		357896512EFFA50B00635FD5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				357896522EFFA50B00635FD5 /* WidgetKit.framework */,
+				357896542EFFA50B00635FD5 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		400 /* BreezeApp */ = {
+		3578964F2EFFA50B00635FD5 /* BreezeWidgetExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 500;
+			buildConfigurationList = 357896682EFFA50D00635FD5 /* Build configuration list for PBXNativeTarget "BreezeWidgetExtension" */;
 			buildPhases = (
-				401 /* Sources */,
-				200 /* Frameworks */,
-				402 /* Resources */,
+				3578964C2EFFA50B00635FD5 /* Sources */,
+				3578964D2EFFA50B00635FD5 /* Frameworks */,
+				3578964E2EFFA50B00635FD5 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				357896562EFFA50B00635FD5 /* BreezeWidget */,
+			);
+			name = BreezeWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = BreezeWidgetExtension;
+			productReference = 357896502EFFA50B00635FD5 /* BreezeWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		400 /* BreezeApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 500 /* Build configuration list for PBXNativeTarget "BreezeApp" */;
+			buildPhases = (
+				401 /* Sources */,
+				200 /* Frameworks */,
+				402 /* Resources */,
+				3578966B2EFFA50D00635FD5 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				357896652EFFA50D00635FD5 /* PBXTargetDependency */,
 			);
 			name = BreezeApp;
 			productName = BreezeApp;
@@ -237,15 +336,18 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					3578964F2EFFA50B00635FD5 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
 					400 = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
-			buildConfigurationList = 601;
+			buildConfigurationList = 601 /* Build configuration list for PBXProject "BreezeApp" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -259,11 +361,19 @@
 			projectRoot = "";
 			targets = (
 				400 /* BreezeApp */,
+				3578964F2EFFA50B00635FD5 /* BreezeWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3578964E2EFFA50B00635FD5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		402 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -275,6 +385,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3578964C2EFFA50B00635FD5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		401 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -303,12 +420,88 @@
 				023 /* SettingsView.swift in Sources */,
 				024 /* AnimatedText.swift in Sources */,
 				025 /* AppearanceMode.swift in Sources */,
+				026 /* NetworkMonitor.swift in Sources */,
+				027 /* NoInternetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		357896652EFFA50D00635FD5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3578964F2EFFA50B00635FD5 /* BreezeWidgetExtension */;
+			targetProxy = 357896642EFFA50D00635FD5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		357896692EFFA50D00635FD5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X42KZKX8R5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BreezeWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BreezeWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.japmanpreet.breeze.BreezeWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3578966A2EFFA50D00635FD5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = BreezeWidgetExtensionRelease.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X42KZKX8R5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BreezeWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BreezeWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.japmanpreet.breeze.BreezeWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		700 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -433,9 +626,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = X42KZKX8R5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Breeze;
@@ -451,8 +645,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.breeze.airquality;
+				PRODUCT_BUNDLE_IDENTIFIER = com.japmanpreet.breeze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -464,9 +659,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = BreezeApp/BreezeAppRelease.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = X42KZKX8R5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Breeze;
@@ -482,8 +681,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.breeze.airquality;
+				PRODUCT_BUNDLE_IDENTIFIER = com.japmanpreet.breeze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Breeze App Store";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -493,6 +694,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		357896682EFFA50D00635FD5 /* Build configuration list for PBXNativeTarget "BreezeWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				357896692EFFA50D00635FD5 /* Debug */,
+				3578966A2EFFA50D00635FD5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		500 /* Build configuration list for PBXNativeTarget "BreezeApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

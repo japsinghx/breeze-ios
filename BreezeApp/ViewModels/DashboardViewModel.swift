@@ -16,10 +16,17 @@ class DashboardViewModel: NSObject, ObservableObject {
     @Published var searchQuery = ""
     @Published var searchResults: [City] = []
     @Published var useFahrenheit = true
+    @Published var isOffline = false
+    @Published var hasAttemptedLoad = false
+    
+    // MARK: - Network Monitor
+    private let networkMonitor = NetworkMonitor.shared
     
     // MARK: - Private Properties
     private let locationManager = CLLocationManager()
     private var searchTask: Task<Void, Never>?
+    private var lastLatitude: Double?
+    private var lastLongitude: Double?
     
     // MARK: - Computed Properties
     var aqiStatus: AQIStatus? {
@@ -52,6 +59,8 @@ class DashboardViewModel: NSObject, ObservableObject {
     func requestLocation() {
         isLoading = true
         errorMessage = nil
+        isOffline = false
+        hasAttemptedLoad = true
         
         switch locationManager.authorizationStatus {
         case .notDetermined:
@@ -106,6 +115,19 @@ class DashboardViewModel: NSObject, ObservableObject {
     func fetchAllData(latitude: Double, longitude: Double) async {
         isLoading = true
         errorMessage = nil
+        isOffline = false
+        
+        // Check network connectivity using synchronous method
+        guard networkMonitor.checkConnection() else {
+            isOffline = true
+            isLoading = false
+            errorMessage = "No internet connection"
+            return
+        }
+        
+        // Store coordinates for retry
+        lastLatitude = latitude
+        lastLongitude = longitude
         
         // Fetch air quality
         do {
@@ -173,6 +195,18 @@ class DashboardViewModel: NSObject, ObservableObject {
         let unit = useFahrenheit ? "°F" : "°C"
         let sign = value >= 0 ? "+" : ""
         return String(format: "%@%.1f%@", sign, value, unit)
+    }
+    
+    /// Retry fetching data with last known coordinates
+    func retryFetch() {
+        if let lat = lastLatitude, let lon = lastLongitude {
+            Task {
+                await fetchAllData(latitude: lat, longitude: lon)
+            }
+        } else {
+            // If no stored coordinates, request location again
+            requestLocation()
+        }
     }
 }
 

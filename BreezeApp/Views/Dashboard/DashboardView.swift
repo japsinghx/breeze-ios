@@ -44,17 +44,8 @@ struct DashboardView: View {
             .padding(.horizontal)
         }
         .refreshable {
-            // Refresh data when pulled down
-            if let coords = getCurrentCoordinates() {
-                await viewModel.fetchAllData(latitude: coords.lat, longitude: coords.lon)
-            }
+            viewModel.retryFetch()
         }
-    }
-    
-    private func getCurrentCoordinates() -> (lat: Double, lon: Double)? {
-        // For refresh, we'd ideally store the current coordinates
-        // For now, return nil to skip refresh
-        return nil
     }
 }
 

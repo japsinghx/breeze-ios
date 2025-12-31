@@ -12,10 +12,37 @@ struct ContentView: View {
                 Color.appBackground
                     .ignoresSafeArea()
                 
-                if viewModel.isLoading && viewModel.airQuality == nil {
+                if viewModel.isOffline && viewModel.hasAttemptedLoad {
+                    // No internet connection state
+                    NoInternetView(onRetry: {
+                        viewModel.retryFetch()
+                    })
+                } else if viewModel.isLoading && viewModel.airQuality == nil {
                     LoadingView()
-                } else if let airQuality = viewModel.airQuality {
+                } else if viewModel.airQuality != nil {
                     DashboardView(viewModel: viewModel)
+                } else if viewModel.errorMessage != nil && viewModel.hasAttemptedLoad {
+                    // Error state
+                    VStack(spacing: 20) {
+                        Image(systemName: "exclamationmark.triangle")
+                            .font(.system(size: 48))
+                            .foregroundColor(.orange)
+                        
+                        Text("Something went wrong")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        
+                        Text(viewModel.errorMessage ?? "")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 32)
+                        
+                        Button("Try Again") {
+                            viewModel.retryFetch()
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
                 } else {
                     // Landing view
                     VStack(spacing: 24) {
@@ -81,6 +108,9 @@ struct ContentView: View {
                             viewModel.pollenItems = []
                             viewModel.climateData = []
                             viewModel.locationName = ""
+                            viewModel.errorMessage = nil
+                            viewModel.isOffline = false
+                            viewModel.hasAttemptedLoad = false
                         } label: {
                             Image(systemName: "house")
                                 .font(.body)
