@@ -52,7 +52,7 @@ struct ClimateChartView: View {
             
             // Change summary
             HStack {
-                Text("Change since \(baselineYear)")
+                Text("Change since \(String(baselineYear))")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 

@@ -182,10 +182,10 @@ struct PollutantDetailSheet: View {
                         Text(pollutant.status.rawValue)
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                            .foregroundColor(.white)
+                            .foregroundColor(pollutant.status.color)
                             .padding(.horizontal, 16)
                             .padding(.vertical, 8)
-                            .background(pollutant.status.color)
+                            .background(pollutant.status.color.opacity(0.15))
                             .clipShape(Capsule())
                     }
                     .frame(maxWidth: .infinity)
@@ -242,20 +242,10 @@ struct PollutantDetailSheet: View {
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
                 .padding()
+                .padding(.top, 20)
             }
             .background(Color(.systemGroupedBackground))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.title3)
-                            .foregroundStyle(.tertiary)
-                    }
-                }
-            }
         }
     }
 }

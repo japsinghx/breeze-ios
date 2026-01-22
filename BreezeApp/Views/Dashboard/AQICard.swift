@@ -94,9 +94,9 @@ struct AQICard: View {
             
             // Share button
             ShareLink(
-                item: "Air Quality in \(viewModel.locationName): AQI \(viewModel.airQuality?.usAQI ?? 0) - \(viewModel.aqiStatus?.text ?? "Unknown")",
+                item: shareUrl,
                 subject: Text("Air Quality Report"),
-                message: Text("Check out the air quality via Breeze!")
+                message: Text("Air Quality in \(viewModel.locationName): AQI \(viewModel.airQuality?.usAQI ?? 0) - \(viewModel.aqiStatus?.text ?? "Unknown"). Check it out in Breeze!")
             ) {
                 Label("Share", systemImage: "square.and.arrow.up")
                     .font(.subheadline)
@@ -112,8 +112,17 @@ struct AQICard: View {
     
     private var progressValue: CGFloat {
         guard let aqi = viewModel.airQuality?.usAQI else { return 0 }
-        // Scale AQI 0-500 to 0-1
-        return min(CGFloat(aqi) / 500.0, 1.0)
+        // Scale AQI 0-300 to 0-1 (values > 300 are rare and Hazardous, so we cap visually at 300)
+        // This makes high values like 234 appear more visually alarming (78% filled vs 46%)
+        return min(CGFloat(aqi) / 300.0, 1.0)
+    }
+    
+    private var shareUrl: URL {
+        // Get coordinates from viewModel (we'll need to add these properties)
+        let lat = viewModel.currentLatitude ?? 0
+        let lon = viewModel.currentLongitude ?? 0
+        let urlString = "breeze://location?lat=\(lat)&lon=\(lon)&name=\(viewModel.locationName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
+        return URL(string: urlString) ?? URL(string: "https://breeze.earth")!
     }
 }
 

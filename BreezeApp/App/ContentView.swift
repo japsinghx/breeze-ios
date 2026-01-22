@@ -75,7 +75,9 @@ struct ContentView: View {
                         } label: {
                             HStack {
                                 Image(systemName: "magnifyingglass")
+                                    .foregroundColor(.secondary)
                                 Text("Search for a city")
+                                    .foregroundColor(.secondary)
                                 Spacer()
                             }
                             .padding()
@@ -145,6 +147,50 @@ struct ContentView: View {
         }
         .preferredColorScheme(appearanceMode.colorScheme)
         .tint(.accentColor)
+        .onOpenURL { url in
+            handleDeepLink(url)
+        }
+    }
+    
+    // Handle deep link URLs
+    private func handleDeepLink(_ url: URL) {
+        guard url.scheme == "breeze",
+              url.host == "location",
+              let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+              let queryItems = components.queryItems else {
+            return
+        }
+        
+        var lat: Double?
+        var lon: Double?
+        var name: String?
+        
+        for item in queryItems {
+            switch item.name {
+            case "lat":
+                lat = Double(item.value ?? "")
+            case "lon":
+                lon = Double(item.value ?? "")
+            case "name":
+                name = item.value
+            default:
+                break
+            }
+        }
+        
+        guard let latitude = lat, let longitude = lon else {
+            return
+        }
+        
+        // Set location name if provided
+        if let locationName = name {
+            viewModel.locationName = locationName
+        }
+        
+        // Fetch data for the shared location
+        Task {
+            await viewModel.fetchAllData(latitude: latitude, longitude: longitude)
+        }
     }
 }
 

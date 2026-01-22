@@ -38,7 +38,7 @@ struct SearchView: View {
                             viewModel.searchResults = []
                         } label: {
                             Image(systemName: "xmark.circle.fill")
-                                .foregroundColor(.secondary)
+                                .foregroundColor(Color.primary.opacity(0.6))
                         }
                     }
                 }

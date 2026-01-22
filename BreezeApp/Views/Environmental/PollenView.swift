@@ -161,10 +161,10 @@ struct PollenDetailSheet: View {
                         Text(pollen.level.rawValue)
                             .font(.caption)
                             .fontWeight(.semibold)
-                            .foregroundColor(.white)
+                            .foregroundColor(pollen.level.color)
                             .padding(.horizontal, 14)
                             .padding(.vertical, 6)
-                            .background(pollen.level.color)
+                            .background(pollen.level.color.opacity(0.15))
                             .clipShape(Capsule())
                     }
                     .frame(maxWidth: .infinity)
@@ -329,20 +329,10 @@ struct PollenDetailSheet: View {
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
                 .padding()
+                .padding(.top, 20)
             }
             .background(Color(.systemGroupedBackground))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.title3)
-                            .foregroundStyle(.tertiary)
-                    }
-                }
-            }
         }
     }
 }

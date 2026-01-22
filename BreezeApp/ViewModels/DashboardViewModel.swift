@@ -28,6 +28,15 @@ class DashboardViewModel: NSObject, ObservableObject {
     private var lastLatitude: Double?
     private var lastLongitude: Double?
     
+    // MARK: - Public Coordinate Access
+    var currentLatitude: Double? {
+        lastLatitude
+    }
+    
+    var currentLongitude: Double? {
+        lastLongitude
+    }
+    
     // MARK: - Computed Properties
     var aqiStatus: AQIStatus? {
         guard let aqi = airQuality?.usAQI else { return nil }
@@ -212,49 +221,62 @@ class DashboardViewModel: NSObject, ObservableObject {
 
 // MARK: - CLLocationManagerDelegate
 extension DashboardViewModel: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        
-        locationName = "Your Location"
-        
-        // Reverse geocode
-        CLGeocoder().reverseGeocodeLocation(location) { [weak self] placemarks, _ in
-            if let placemark = placemarks?.first {
-                var components: [String] = []
-                if let city = placemark.locality {
-                    components.append(city)
-                }
-                if let country = placemark.country {
-                    components.append(country)
-                }
-                if !components.isEmpty {
-                    self?.locationName = components.joined(separator: ", ")
+    nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        Task { @MainActor in
+            guard let location = locations.first else { return }
+            
+            self.locationName = "Your Location"
+            
+            // Reverse geocode
+            CLGeocoder().reverseGeocodeLocation(location) { [weak self] placemarks, _ in
+                Task { @MainActor [weak self] in
+                    if let placemark = placemarks?.first {
+                        var components: [String] = []
+                        if let city = placemark.locality {
+                            components.append(city)
+                        }
+                        if let country = placemark.country {
+                            components.append(country)
+                        }
+                        if !components.isEmpty {
+                            self?.locationName = components.joined(separator: ", ")
+                        }
+                    }
                 }
             }
-        }
-        
-        Task {
-            await fetchAllData(
+            
+            // Save location to shared UserDefaults for widget
+            if let sharedDefaults = UserDefaults(suiteName: "group.com.japmanpreet.breeze") {
+                sharedDefaults.set(location.coordinate.latitude, forKey: "userLatitude")
+                sharedDefaults.set(location.coordinate.longitude, forKey: "userLongitude")
+                sharedDefaults.set(self.locationName, forKey: "userLocationName")
+            }
+            
+            await self.fetchAllData(
                 latitude: location.coordinate.latitude,
                 longitude: location.coordinate.longitude
             )
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        errorMessage = "Unable to get your location."
-        isLoading = false
+    nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        Task { @MainActor in
+            self.errorMessage = "Unable to get your location."
+            self.isLoading = false
+        }
     }
     
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        switch manager.authorizationStatus {
-        case .authorizedWhenInUse, .authorizedAlways:
-            manager.requestLocation()
-        case .denied, .restricted:
-            errorMessage = "Location access denied."
-            isLoading = false
-        default:
-            break
+    nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        Task { @MainActor in
+            switch manager.authorizationStatus {
+            case .authorizedWhenInUse, .authorizedAlways:
+                manager.requestLocation()
+            case .denied, .restricted:
+                self.errorMessage = "Location access denied."
+                self.isLoading = false
+            default:
+                break
+            }
         }
     }
 }
